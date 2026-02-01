@@ -50,24 +50,6 @@ header {
   background-size: cover;
 }
 
-/* NAV */
-/* Burger Icon Standard versteckt */
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 1001;
-    order: 3; /* Damit es über dem Menü liegt */
-}
-
-.burger-menu span {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-    transition: 0.3s;
-}
-
 .nav {
     display: flex;
     justify-content: space-between;
@@ -89,11 +71,15 @@ header {
     justify-content: center;
 }
 
-.nav_links {
+    .nav-links-wrapper.active {
+        right: 0;
+    }
+
+    .nav_links {
     display: flex;
     list-style: none;
     gap: 4vw;
-}
+    }
 
 .nav_links a {
     color: white !important;
@@ -107,6 +93,22 @@ header {
 
 .nav_links a:hover {
     opacity: 0.7;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    order: 3; /* Damit es über dem Menü liegt */
+}
+
+.burger-menu span {
+        background-color: #fff; /* Damit man ihn auf Schwarz sieht */
+        width: 28px;
+        height: 2px;
+        transition: 0.3s;
 }
 
 /* Scrolled State */
@@ -240,7 +242,7 @@ header {
 /* Contact Section */
 .contact-container {
   min-height: 100vh;
-  background-image: url(Photos/dreiz_03.2.jpeg);
+  background-image: url(Photos/dreiz_03.2.jpg);
   background-position: center;
   background-size: cover;
   display: flex;
@@ -298,77 +300,55 @@ header {
     opacity: 0.6;
 }
 
-/* --- Mobile Responsiveness --- */
+
+
+
+
+
+
+/* ============================================================
+   Media Querys for Responsiveness
+   ============================================================ */
 
 @media (max-width: 900px) {
-  .products-container, .about-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 100px;
-  }
-  
-  .about-text { order: 2; }
-  .about-image { order: 1; }
-  
-  .nav {
-      flex-direction: column;
-      height: auto;
-      padding: 1rem;
-  }
-  
-  .nav_links {
-      gap: 15px;
-      margin: 10px 0;
-  }
-  
-  .lang-switch {
-      margin-top: 5px;
-  }
+    .products-container, .about-container { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+    .about-text { order: 2; }
+    .about-image { order: 1; }
 }
 
-
 @media only screen and (max-width: 800px) {
-    .nav {
+    .nav { 
+        height: 60px; 
         display: flex;
         align-items: center;
-        justify-content: flex-end; /* Basis-Ausrichtung rechts */
-        padding: 15px 25px;
-        height: 70px;
+        justify-content: center; /* Das Logo bleibt theoretisch mittig */
+        padding: 0 20px;
+        position: fixed;
+    }
+    
+    .lang-switch { 
+        position: absolute; /* Löst es vom Rest */
+        left: 20px;         /* Klebt es links fest */
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.85rem; 
+        z-index: 1600;      /* Über dem Overlay */
     }
 
-    /* Dieser Container erzwingt das Rechts-Andocken */
-    .nav-controls {
+    .burger-menu { 
         display: flex;
-        align-items: center;
-        gap: 20px; /* Abstand zwischen Sprache und Burger */
-        margin-left: auto; /* Schiebt alles nach rechts, falls links Platz ist */
+        position: absolute; /* Löst es vom Rest */
+        right: 20px;        /* Klebt es rechts fest */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2000;      /* Ganz oben */
     }
 
-    .lang-switch {
-        font-size: 0.85rem;
-        display: flex;
-        gap: 5px;
-        white-space: nowrap;
-    }
-
-    .burger-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        z-index: 2000;
-    }
-
-    .burger-menu span {
-        background-color: #fff; /* Damit man ihn auf Schwarz sieht */
-        width: 28px;
-        height: 2px;
-    }
-
-    /* Das eigentliche Slide-Menü */
+    /* Das Slide-Overlay */
     .nav-links-wrapper {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -100%; 
         width: 100%;
         height: 100vh;
         background: rgba(15, 15, 15, 0.98);
@@ -381,49 +361,26 @@ header {
         z-index: 1500;
     }
 
-    .nav-links-wrapper.active {
-        right: 0;
+    .nav-links-wrapper.active { 
+        right: 0; 
+    }
+    
+    .nav_links { 
+        flex-direction: column; 
+        gap: 30px; 
     }
 
-    .nav_links {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
+    .nav_links a { 
+        font-size: 1.5rem; 
     }
 
-    .nav_links a {
-        font-size: 1.6rem;
-        color: #fff;
-    }
+    /* Burger Animation */
+    .burger-menu.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .burger-menu.open span:nth-child(2) { opacity: 0; }
+    .burger-menu.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 }
 
-/* Deaktiviert Zentrierung auf kleinen iPhones */
-@media only screen and (max-width: 600px) {
-    .nav {
-        justify-content: flex-end;
-    }
-    .logo {
-        width: 60%; /* Logo etwas kleiner, damit Platz bleibt */
-    }
-}
-
-/* --- Spezielle iPhone Korrekturen (600px und kleiner) --- */
-@media only screen and (max-width: 600px) {
-    /* Wir entfernen hier justify-content: center, damit es rechts bleibt */
-    .nav {
-        justify-content: flex-end; 
-        padding: 10px 15px;
-    }
-
-    .logo {
-        width: 70%; 
-        top: 40%;
-        /* Falls das Logo in der Mitte klebt, hier korrigieren */
-    }
-
-    .products-image img, 
-    .about-image img {
-        max-width: 95%;
-        height: auto;
-    }
+/* Speziell iPhone Hochkant */
+@media only screen and (max-width: 480px) and (orientation: portrait) {
+    .logo { top: 30% !important; width: 85%; }
 }
