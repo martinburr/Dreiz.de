@@ -1,0 +1,429 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Übernimmt die Farbe des Textes drumherum */
+}
+
+/* Global Fonts */
+@font-face {
+  font-family: zoompronormallight; 
+  src: url(/Fonts/ZoomPro-NormalLight.otf);
+}
+@font-face {
+  font-family: zoompronormalregular;
+  src: url(/Fonts/ZoomPro-NormalRegular.otf);
+}
+@font-face {
+  font-family: zoompronormalmedium;
+  src: url(/Fonts/ZoomPro-NormalMedium.otf);
+}
+@font-face {
+  font-family: zoomprocompactregular;
+  src: url(/Fonts/ZoomPro-CompactRegular.otf);
+}
+@font-face {
+  font-family: zoomprocompactlight;
+  src: url(/Fonts/ZoomPro-CompactLight.otf);
+}
+
+body {
+  font-size: 16px;
+  overflow-x: hidden;
+  background-color: white; /* Fallback */
+}
+
+/* NAV Section */
+header {
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url(Photos/dreiz_02.jpg);
+  background-position: center 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* NAV */
+/* Burger Icon Standard versteckt */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    order: 3; /* Damit es über dem Menü liegt */
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    transition: 0.3s;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9); 
+    transition: all 0.3s ease;
+}
+
+.nav-links-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_links {
+    display: flex;
+    list-style: none;
+    gap: 4vw;
+}
+
+.nav_links a {
+    color: white !important;
+    text-decoration: none;
+    font-family: zoompronormalmedium;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: opacity 0.3s ease;
+}
+
+.nav_links a:hover {
+    opacity: 0.7;
+}
+
+/* Scrolled State */
+.nav.scrolled {
+    height: 65px;
+    background-color: black;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Language Switch */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: zoomprocompactregular;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.lang-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.lang-link.active {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+/* Logo */
+.logo {
+  z-index: 5; 
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 1200px;
+  position: absolute;
+  pointer-events: none;
+  
+  /* Erzwingt Weiß, falls das SVG selbst Farben hat */
+  filter: brightness(0) invert(1); 
+  
+  /* Stellt sicher, dass keine Deckkraft-Animationen es grau wirken lassen */
+  opacity: 1 !important; 
+}
+
+/* Content Sections Base */
+.products-container, .about-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin: 0 5%;
+  grid-gap: 4vw;
+}
+
+.products-image img, .about-image img {
+  max-width: 75%; /* Von 100% auf 75% verkleinert */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Zentriert das Bild, wenn es kleiner als der Container ist */
+  border-radius: 5px; /* Optional: macht die Ecken etwas weicher, passend zum edlen Look */
+}
+
+.products-text, .about-text {
+  padding: 2em 0;
+}
+
+.products-text h2, .about-text h2 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-family: zoompronormalregular;
+  margin-bottom: 0.2em;
+}
+
+.products-text h3, .about-text h3 {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-family: zoomprocompactregular;
+  margin-bottom: 1.5em;
+  color: #333;
+}
+
+.products-text p, .about-text p {
+  font-size: 1rem;
+  font-family: zoomprocompactlight;
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.products-text a, .about-text a {
+    display: inline-block;
+    color: black;              
+    text-decoration: none;    
+    font-family: zoomprocompactregular; 
+    border-bottom: 1px solid black;
+    margin-top: 1.5em;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Special Layout for About (Text Left) */
+.about-text { order: 1; }
+.about-image { order: 2; }
+
+/* Team Section */
+.team-dreiz {
+  background-color: #c5d1dd;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.team-photo {
+  text-align: center;
+  max-width: 300px;
+}
+
+.team-id img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-container {
+  min-height: 100vh;
+  background-image: url(Photos/dreiz_03.2.jpeg);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5%;
+}
+
+.contact-information {
+  background-color: rgba(0,0,0,0.4); /* Leichter Kontrast für Lesbarkeit */
+  padding: 3rem;
+  color: white;
+  text-align: center;
+}
+
+.contact-information p a {
+    color: white !important;
+    text-decoration: none !important;
+    transition: opacity 0.3s ease;
+}
+
+.contact-information p a:hover {
+    opacity: 0.7;
+    text-decoration: underline !important; /* Optional: Unterstreichen nur beim Drüberfahren */
+}
+
+.contact-information h5 {
+  font-family: zoompronormalmedium;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+/* Footer Section */
+.footer {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  font-family: zoompronormallight;
+  font-size: 0.85rem;
+}
+
+.footer a, 
+.impressum p a, 
+.credit-link {
+    color: black !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.footer a:hover, 
+.impressum p a:hover {
+    opacity: 0.6;
+}
+
+/* --- Mobile Responsiveness --- */
+
+@media (max-width: 900px) {
+  .products-container, .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 100px;
+  }
+  
+  .about-text { order: 2; }
+  .about-image { order: 1; }
+  
+  .nav {
+      flex-direction: column;
+      height: auto;
+      padding: 1rem;
+  }
+  
+  .nav_links {
+      gap: 15px;
+      margin: 10px 0;
+  }
+  
+  .lang-switch {
+      margin-top: 5px;
+  }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; /* Basis-Ausrichtung rechts */
+        padding: 15px 25px;
+        height: 70px;
+    }
+
+    /* Dieser Container erzwingt das Rechts-Andocken */
+    .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 20px; /* Abstand zwischen Sprache und Burger */
+        margin-left: auto; /* Schiebt alles nach rechts, falls links Platz ist */
+    }
+
+    .lang-switch {
+        font-size: 0.85rem;
+        display: flex;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 2000;
+    }
+
+    .burger-menu span {
+        background-color: #fff; /* Damit man ihn auf Schwarz sieht */
+        width: 28px;
+        height: 2px;
+    }
+
+    /* Das eigentliche Slide-Menü */
+    .nav-links-wrapper {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease-in-out;
+        z-index: 1500;
+    }
+
+    .nav-links-wrapper.active {
+        right: 0;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .nav_links a {
+        font-size: 1.6rem;
+        color: #fff;
+    }
+}
+
+/* Deaktiviert Zentrierung auf kleinen iPhones */
+@media only screen and (max-width: 600px) {
+    .nav {
+        justify-content: flex-end;
+    }
+    .logo {
+        width: 60%; /* Logo etwas kleiner, damit Platz bleibt */
+    }
+}
+
+/* --- Spezielle iPhone Korrekturen (600px und kleiner) --- */
+@media only screen and (max-width: 600px) {
+    /* Wir entfernen hier justify-content: center, damit es rechts bleibt */
+    .nav {
+        justify-content: flex-end; 
+        padding: 10px 15px;
+    }
+
+    .logo {
+        width: 70%; 
+        top: 40%;
+        /* Falls das Logo in der Mitte klebt, hier korrigieren */
+    }
+
+    .products-image img, 
+    .about-image img {
+        max-width: 95%;
+        height: auto;
+    }
+}
