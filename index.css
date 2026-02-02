@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +6,9 @@
 
 a {
     text-decoration: none;
-    color: inherit; /* Übernimmt die Farbe des Textes drumherum */
+    color: inherit;
 }
+
 
 /* Global Fonts */
 @font-face {
@@ -35,8 +35,9 @@ a {
 body {
   font-size: 16px;
   overflow-x: hidden;
-  background-color: white; /* Fallback */
+  background-color: white;
 }
+
 
 /* NAV Section */
 header {
@@ -44,7 +45,7 @@ header {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url(Photos/dreiz_02.jpg);
+  background-image: url(Photos/dreiz_01.jpg);
   background-position: center 10%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -59,7 +60,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 64px;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.9); 
     transition: all 0.3s ease;
@@ -101,24 +102,22 @@ header {
     gap: 5px;
     cursor: pointer;
     z-index: 1001;
-    order: 3; /* Damit es über dem Menü liegt */
+    order: 3; 
 }
 
 .burger-menu span {
-        background-color: #fff; /* Damit man ihn auf Schwarz sieht */
+        background-color: #fff;
         width: 28px;
         height: 2px;
         transition: 0.3s;
 }
 
-/* Scrolled State */
 .nav.scrolled {
     height: 65px;
     background-color: black;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Language Switch */
 .lang-switch {
     display: flex;
     align-items: center;
@@ -142,6 +141,7 @@ header {
     border-bottom: 2px solid white;
 }
 
+
 /* Logo */
 .logo {
   z-index: 5; 
@@ -152,15 +152,12 @@ header {
   max-width: 1200px;
   position: absolute;
   pointer-events: none;
-  
-  /* Erzwingt Weiß, falls das SVG selbst Farben hat */
   filter: brightness(0) invert(1); 
-  
-  /* Stellt sicher, dass keine Deckkraft-Animationen es grau wirken lassen */
   opacity: 1 !important; 
 }
 
-/* Content Sections Base */
+
+/* Products Section */
 .products-container, .about-container {
   min-height: 100vh;
   display: grid;
@@ -171,11 +168,11 @@ header {
 }
 
 .products-image img, .about-image img {
-  max-width: 75%; /* Von 100% auf 75% verkleinert */
+  max-width: 75%; 
   height: auto;
   display: block;
-  margin: 0 auto; /* Zentriert das Bild, wenn es kleiner als der Container ist */
-  border-radius: 5px; /* Optional: macht die Ecken etwas weicher, passend zum edlen Look */
+  margin: 0 auto; 
+  border-radius: 5px; 
 }
 
 .products-text, .about-text {
@@ -213,11 +210,11 @@ header {
     transition: all 0.3s ease;
 }
 
-/* Special Layout for About (Text Left) */
+
+/* Team Section */
 .about-text { order: 1; }
 .about-image { order: 2; }
 
-/* Team Section */
 .team-dreiz {
   background-color: #c5d1dd;
   padding: 5rem 2rem;
@@ -239,6 +236,7 @@ header {
   margin-bottom: 1rem;
 }
 
+
 /* Contact Section */
 .contact-container {
   min-height: 100vh;
@@ -252,7 +250,7 @@ header {
 }
 
 .contact-information {
-  background-color: rgba(0,0,0,0.4); /* Leichter Kontrast für Lesbarkeit */
+  background-color: rgba(0,0,0,0.4);
   padding: 3rem;
   color: white;
   text-align: center;
@@ -266,7 +264,7 @@ header {
 
 .contact-information p a:hover {
     opacity: 0.7;
-    text-decoration: underline !important; /* Optional: Unterstreichen nur beim Drüberfahren */
+    text-decoration: underline !important;
 }
 
 .contact-information h5 {
@@ -274,6 +272,7 @@ header {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
   margin-bottom: 1rem;
 }
+
 
 /* Footer Section */
 .footer {
@@ -301,14 +300,30 @@ header {
 }
 
 
+/* Media Query */
+
+@media only screen and (max-width: 1024px) and (orientation: portrait) {
+    .logo { 
+        top: 20% !important;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%; 
+        max-width: 600px; 
+    }
+
+    header {
+        background-position: center 20%;
+    }
+}
 
 
+@media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: portrait) {
+    .logo {
+        top: 22% !important;
+        width: 60%;
+    }
+}
 
-
-
-/* ============================================================
-   Media Querys for Responsiveness
-   ============================================================ */
 
 @media (max-width: 900px) {
     .products-container, .about-container { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
@@ -318,33 +333,32 @@ header {
 
 @media only screen and (max-width: 800px) {
     .nav { 
-        height: 60px; 
+        height: 42px; 
         display: flex;
         align-items: center;
-        justify-content: center; /* Das Logo bleibt theoretisch mittig */
+        justify-content: center;
         padding: 0 20px;
         position: fixed;
     }
     
     .lang-switch { 
-        position: absolute; /* Löst es vom Rest */
-        left: 20px;         /* Klebt es links fest */
+        position: absolute; 
+        left: 20px;         
         top: 50%;
         transform: translateY(-50%);
         font-size: 0.85rem; 
-        z-index: 1600;      /* Über dem Overlay */
+        z-index: 1600;      
     }
 
     .burger-menu { 
         display: flex;
-        position: absolute; /* Löst es vom Rest */
-        right: 20px;        /* Klebt es rechts fest */
+        position: absolute; 
+        right: 20px;        
         top: 50%;
         transform: translateY(-50%);
-        z-index: 2000;      /* Ganz oben */
+        z-index: 2000;      
     }
-
-    /* Das Slide-Overlay */
+    
     .nav-links-wrapper {
         position: fixed;
         top: 0;
@@ -374,13 +388,28 @@ header {
         font-size: 1.5rem; 
     }
 
-    /* Burger Animation */
     .burger-menu.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
     .burger-menu.open span:nth-child(2) { opacity: 0; }
     .burger-menu.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 }
 
-/* Speziell iPhone Hochkant */
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        flex-direction: column; 
+        gap: 20px;            
+        text-align: center;     
+        padding: 2rem 1rem;    
+    }
+
+    .footer div, .impressum {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
 @media only screen and (max-width: 480px) and (orientation: portrait) {
-    .logo { top: 30% !important; width: 85%; }
+    .logo { top: 20% !important; width: 85%; }
 }
