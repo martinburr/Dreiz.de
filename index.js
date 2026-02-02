@@ -77,9 +77,14 @@ const translations = {
         'foot-rights': '© 2026 DREIZ Cosmetics GMBH & Co. KG - Alle Rechte vorbehalten - ',
         'foot-imprint': 'Impressum',
         'foot-privacy': 'Datenschutz',
+        'foot-agb': 'AGB',
         'foot-imprint-link': 'impressum.html',
-        'foot-privacy-link': 'datenschutz.html'
+        'foot-privacy-link': 'datenschutz.html',
+        'foot-agb-link': 'agb.html',
+        'AGB-Download-link': 'AGB_DE'
+        
     },
+
     'en': {
         // Navigation
         'nav-products': 'Products',
@@ -127,8 +132,11 @@ const translations = {
         'foot-rights': '© 2026 DREIZ Cosmetics GMBH & Co. KG - All rights reserved - ',
         'foot-imprint': 'Imprint',
         'foot-privacy': 'Privacy Policy',
+        'foot-agb': 'Terms and Conditions',
         'foot-imprint-link': 'imprint.html',
-        'foot-privacy-link': 'privacy.html'
+        'foot-privacy-link': 'privacy.html',
+        'foot-agb-link': 'terms.html',
+        'AGB-Download-link': 'AGB_DE',
     }
 };
 
