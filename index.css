@@ -45,8 +45,8 @@ header {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url(Photos/dreiz_01.jpg);
-  background-position: center 10%;
+  background-image: url(Photos/Lu5.jpg);
+  background-position: center 0%;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -240,7 +240,7 @@ header {
 /* Contact Section */
 .contact-container {
   min-height: 100vh;
-  background-image: url(Photos/dreiz_03.2.jpg);
+  background-image: url(Photos/Lu1.jpeg);
   background-position: center;
   background-size: cover;
   display: flex;
