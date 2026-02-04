@@ -45,7 +45,7 @@ header {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url(Photos/Lu5.jpg);
+  background-image: url(Photos/Lu7.jpg);
   background-position: center 0%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -250,14 +250,24 @@ header {
 }
 
 .contact-information {
-  background-color: rgba(0,0,0,0.4);
-  padding: 3rem;
-  color: white;
-  text-align: center;
+    /* The "Glass" effect */
+    background: rgba(255, 255, 255, 0.354); 
+    backdrop-filter: blur(1.1rem);           
+    -webkit-backdrop-filter: blur(10px);   
+    /* Definition & Depth */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    /* Layout */
+    padding: 3rem;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    border-radius: 15px; 
+    max-width: 500px;    
 }
 
 .contact-information p a {
-    color: white !important;
+    color: rgb(0, 0, 0) !important;
     text-decoration: none !important;
     transition: opacity 0.3s ease;
 }
