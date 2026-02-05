@@ -69,7 +69,7 @@ const translations = {
         'cont-address': 'Dreiz Cosmetic GMBH<br>Albert Einstein Straße 3<br>73529 Schwäbisch Gmünd<br>Deutschland',
         'cont-phone': 'Telefon',
         'cont-fax': 'Telefax',
-        'cont-email': 'E-Mail',
+        'cont-email': 'E-mail schreiben',
         'cont-hours-title': 'ÖFFNUNGSZEITEN',
         'cont-hours-days': 'Mo.-Do. 8:30 - 12:00 Uhr<br>13:00 - 16:00 Uhr<br>Fr. 8:00 - 12:00 Uhr',
 
@@ -124,7 +124,7 @@ const translations = {
         'cont-address': 'Dreiz Cosmetic GMBH<br>Albert Einstein Street 3<br>73529 Schwaebisch Gmuend<br>Germany',
         'cont-phone': 'Phone',
         'cont-fax': 'Fax',
-        'cont-email': 'Email',
+        'cont-email': 'Send E-mail',
         'cont-hours-title': 'OPENING HOURS',
         'cont-hours-days': 'Mon.-Thu. 8:30 am - 12:00 pm<br>1:00 pm - 4:00 pm<br>Fri. 8:00 am - 12:00 pm',
 

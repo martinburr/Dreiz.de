@@ -283,6 +283,39 @@ header {
   margin-bottom: 1rem;
 }
 
+/* Container für den Button-Abstand */
+.email-cta {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Der E-Mail Button in Schwarz/Glas-Optik */
+.glass-button {
+    display: inline-block;
+    padding: 14px 30px;
+    background: rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 50px;
+    color: #000000 !important;
+    text-decoration: none;
+    font-family: zoompronormalmedium;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+
+.glass-button:hover {
+    background: rgba(0, 0, 0, 1); 
+    color: #ffffff !important;  
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Aktiver Klick-Zustand */
+.glass-button:active {
+    transform: translateY(-1px);
+}
 
 /* Footer Section */
 .footer {
