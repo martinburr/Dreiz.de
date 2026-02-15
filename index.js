@@ -183,10 +183,21 @@ const burger = document.getElementById('burger');
 const navMenu = document.querySelector('.nav-links-wrapper');
 const navLinksItems = document.querySelectorAll('.nav_links li a');
 
-// Öffnen / Schließen bei Klick auf Burger
-burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
+const toggleMenu = () => {
+    const isOpen = burger.classList.toggle('open');
     navMenu.classList.toggle('active');
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+};
+
+// Öffnen / Schließen bei Klick auf Burger
+burger.addEventListener('click', toggleMenu);
+
+// Auch Tastatursteuerung (Enter/Leertaste) ermöglichen
+burger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+    }
 });
 
 // Menü schließen, wenn ein Link geklickt wird (wichtig!)
@@ -194,5 +205,6 @@ navLinksItems.forEach(item => {
     item.addEventListener('click', () => {
         burger.classList.remove('open');
         navMenu.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
     });
 });
