@@ -1,22 +1,44 @@
 /* GSAP Animationen */
-gsap.timeline()
-    .fromTo("header", 
-        { opacity: 0 }, 
-        { duration: 3, opacity: 1, ease: "power2.out" }
-    )
-    .fromTo(".logo", 
-        { opacity: 0 }, 
-        { duration: 3, opacity: 1, ease: "power2.out" }, 
-        "-=2"
-    )
-    .fromTo(".nav_links", 
-        { opacity: 0 }, 
-        { duration: 3, opacity: 1, ease: "power2.out" }, 
+const tl = gsap.timeline();
+
+tl.fromTo("header",
+    { opacity: 0 },
+    { duration: 3, opacity: 1, ease: "power2.out" }
+)
+    .fromTo(".nav_links",
+        { opacity: 0 },
+        { duration: 3, opacity: 1, ease: "power2.out" },
         "-=3"
     );
 
+// Select all logo parts
+const logoParts = document.querySelectorAll(".logo-part");
+
+// Convert NodeList to Array
+const logoPartsArray = Array.from(logoParts);
+
+// Sort them based on their horizontal position (left to right)
+logoPartsArray.sort((a, b) => {
+    const rectA = a.getBoundingClientRect();
+    const rectB = b.getBoundingClientRect();
+    return rectA.left - rectB.left;
+});
+
+// Animate the sorted parts
+gsap.fromTo(logoPartsArray,
+    { opacity: 0, y: 50 },
+    {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        ease: "power2.out",
+        delay: 0.5 // Start a bit after the initial load or overlapping with other animations
+    }
+);
+
 /* Scroll-Effekte */
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
     const nav = document.querySelector(".nav");
     if (window.innerWidth > 800) {
         if (window.scrollY > 50) {
@@ -69,7 +91,11 @@ const translations = {
         'cont-address': 'Dreiz Cosmetic GMBH<br>Albert Einstein Straße 3<br>73529 Schwäbisch Gmünd<br>Deutschland',
         'cont-phone': 'Telefon',
         'cont-fax': 'Telefax',
-        'cont-email': 'E-mail schreiben',
+        'cont-email': 'E-mail:',
+        'name': 'Name',
+        'email': 'E-Mail',
+        'message': 'Nachricht',
+        'senden': 'Senden',
         'cont-hours-title': 'ÖFFNUNGSZEITEN',
         'cont-hours-days': 'Mo.-Do. 8:30 - 12:00 Uhr<br>13:00 - 16:00 Uhr<br>Fr. 8:00 - 12:00 Uhr',
 
@@ -82,7 +108,7 @@ const translations = {
         'foot-privacy-link': 'datenschutz.html',
         'foot-agb-link': 'agb.html',
         'AGB-Download-link': 'AGB_DE'
-        
+
     },
 
     'en': {
@@ -124,7 +150,11 @@ const translations = {
         'cont-address': 'Dreiz Cosmetic GMBH<br>Albert Einstein Street 3<br>73529 Schwaebisch Gmuend<br>Germany',
         'cont-phone': 'Phone',
         'cont-fax': 'Fax',
-        'cont-email': 'Send E-mail',
+        'cont-email': 'E-mail:',
+        'name': 'Name',
+        'email': 'E-Mail',
+        'message': 'Message',
+        'senden': 'Send',
         'cont-hours-title': 'OPENING HOURS',
         'cont-hours-days': 'Mon.-Thu. 8:30 am - 12:00 pm<br>1:00 pm - 4:00 pm<br>Fri. 8:00 am - 12:00 pm',
 
@@ -145,27 +175,44 @@ const langLinks = document.querySelectorAll('.lang-link');
 langLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        const lang = link.textContent.trim().toLowerCase(); 
-        
-        langLinks.forEach(l => l.classList.remove('active'));
+
+        const lang = link.textContent.trim().toLowerCase();
+
+        langLinks.forEach(l => {
+            l.classList.remove('active');
+            l.setAttribute('aria-current', 'false');
+        });
         link.classList.add('active');
-        
+        link.setAttribute('aria-current', 'true');
+
+        document.documentElement.lang = lang;
+
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.getAttribute('data-key');
-            
+
             if (translations[lang] && translations[lang][key]) {
-                // NEU: Logik für Links (URLs)
-                if (key.endsWith('-link')) {
-                    element.setAttribute('href', translations[lang][key]);
-                } else {
-                    // Normaler Text-Austausch
-                    element.innerHTML = translations[lang][key];
+                const translation = translations[lang][key];
+
+                // Special handling for inputs and textareas
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.setAttribute('placeholder', translation);
+                    element.setAttribute('aria-label', translation);
+                }
+                // Handling for links with specific logic
+                else if (key.endsWith('-link')) {
+                    element.setAttribute('href', translation);
+                }
+                // Normal text content update
+                else {
+                    element.innerHTML = translation;
                 }
             }
         });
 
-        document.documentElement.lang = lang;
+        // Update burger menu aria-label if needed (optional but good practice)
+        const burgerLabel = lang === 'de' ? 'Menü öffnen' : 'Open menu';
+        document.getElementById('burger').setAttribute('aria-label', burgerLabel);
+
     });
 });
 
