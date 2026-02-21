@@ -10,6 +10,11 @@
     <meta name="description"
         content="Dreiz Cosmetics Hersteller von Private Label und Eigenmarke Produkten im Friseur und Kosmetik Bereich.">
     <link rel="icon" type="image/svg" href="Icons/foundation 1.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <title>Dreiz Cosmetics</title>
 </head>
@@ -77,12 +82,20 @@
                 d="M25140.6 2057.18C25681.8 2438.33 26241.6 2828.42 27347.5 2830.37H27349.3C27351.8 2830.37 27354.1 2830.66 27356.6 2830.66V2830.23C27445.5 2830.81 27534.2 2828.33 27622.9 2822.8C27987.7 2794.86 28360.1 2721.23 28709.1 2558.96C29057.2 2393.63 29369.5 2160.35 29657.1 1931.57C29948 1707.46 30235.3 1502.4 30556.7 1368.82C30875.6 1226.92 31217.6 1155.76 31567.1 1090.13C31212.1 1035.52 30852.2 1045.92 30499.9 1120.98C30142.8 1202.76 29798.8 1378.86 29486.8 1578.09C29170.6 1771.07 28880.2 1974.96 28567.5 2093.64C28258.7 2222.15 27932.4 2283.27 27599.7 2300.73C27518.3 2306.99 27437.3 2310.63 27356.5 2311.64C26363.3 2311.64 25876.9 1969.08 25361.9 1606.11C24973.8 1332.81 24573.8 1051.86 23966.8 914.47V53.6738H23526.6V1371.87C23563 1371.87 23630.8 1382.5 23630.8 1382.5C24313.3 1474.32 24715 1757.24 25140.6 2057.18Z"
                 fill="#1B1A1A" />
         </svg>
+        <div class="hero-tagline">
+            <span class="hero-tagline-line"></span>
+            <p data-key="hero-tagline">MADE IN GERMANY &nbsp;&middot;&nbsp; SEIT JAHRZEHNTEN</p>
+            <span class="hero-tagline-line"></span>
+        </div>
+        <div class="hero-scroll-cue" aria-hidden="true">
+            <div class="scroll-arrow"></div>
+        </div>
     </header>
 
     <main id="main-content">
         <section class="products-container" id="products">
             <div class="products-image">
-                <img src="Photos/dreiz_produkt_03b.jpg" alt="Produkte">
+                <img src="Photos/Produkte_Photo01.jpg" alt="Produkte">
             </div>
             <div class="products-text">
                 <h2 data-key="prod-title">Produkte</h2>
@@ -100,10 +113,108 @@
             </div>
         </section>
 
+        <!-- ═══════════════ KERACIN PRODUCT CAROUSEL ═══════════════ -->
+        <section class="keracin-section" id="keracin" aria-label="System KERaCIN Produkte">
+            <div class="keracin-header">
+                <h2 data-key="keracin-title">System KERaCIN</h2>
+                <h3 data-key="keracin-subtitle">PROFESSIONAL HAIR & SKIN CARE — GERMANY</h3>
+            </div>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn--prev" id="carouselPrev" aria-label="Vorheriges Produkt">
+                    <span></span>
+                </button>
+
+                <div class="carousel-track-outer">
+                    <ul class="carousel-track" id="carouselTrack">
+
+                        <li class="carousel-slide">
+                            <div class="product-card">
+                                <div class="product-card__image">
+                                    <img src="Photos/Produkt_Photo02.png"
+                                        alt="Dreiz Cosmetics — Professional Hair & Skin Care">
+                                </div>
+                                <div class="product-card__text">
+                                    <p class="product-card__label" data-key="prod-k1-label">Seit 1979</p>
+                                    <h4 class="product-card__name" data-key="prod-k1">Professional Hair & Skin Care</h4>
+                                    <p class="product-card__desc" data-key="prod-k1d">Professionelle Haarpflege mit
+                                        echtem Arganöl aus Marokko. Intensive Feuchtigkeitsversorgung und brillanter
+                                        Glanz.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="carousel-slide">
+                            <div class="product-card">
+                                <div class="product-card__image">
+                                    <img src="Photos/Produkt_Photo05.jpg"
+                                        alt="System KERaCIN — Vollständiges Produktsortiment">
+                                </div>
+                                <div class="product-card__text">
+                                    <p class="product-card__label" data-key="prod-k2-label">Das Sortiment</p>
+                                    <h4 class="product-card__name" data-key="prod-k2">Die Vollständige Kollektion</h4>
+                                    <p class="product-card__desc" data-key="prod-k2d">Von Styling bis Pflege — Wet Gel,
+                                        Haarlack, Glanz Styler, Protein Mousse, Haarspitzen Repair und mehr.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="carousel-slide">
+                            <div class="product-card">
+                                <div class="product-card__image">
+                                    <img src="Photos/Produkt_Photo04.png" alt="System KERaCIN ArgaOil Linie">
+                                </div>
+                                <div class="product-card__text">
+                                    <p class="product-card__label" data-key="prod-k3-label">ArgaOil Linie</p>
+                                    <h4 class="product-card__name" data-key="prod-k3">Haarkur · Shampoo · 2-Phasen Kur
+                                    </h4>
+                                    <p class="product-card__desc" data-key="prod-k3d">Leistungsstarke Stylingprodukte
+                                        für professionelles Finish — starker Halt, langanhaltend und pflegend.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <button class="carousel-btn carousel-btn--next" id="carouselNext" aria-label="Nächstes Produkt">
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Produkt auswählen">
+                <button class="carousel-dot active" data-index="0" role="tab" aria-selected="true"
+                    aria-label="Produkt 1"></button>
+                <button class="carousel-dot" data-index="1" role="tab" aria-selected="false"
+                    aria-label="Produkt 2"></button>
+                <button class="carousel-dot" data-index="2" role="tab" aria-selected="false"
+                    aria-label="Produkt 3"></button>
+            </div>
+        </section>
+
+        <section class="trust-bar" aria-label="Unsere Stärken">
+            <div class="trust-bar-inner">
+                <div class="trust-item">
+                    <span class="trust-number">30+</span>
+                    <span class="trust-label" data-key="trust-years">Jahre Erfahrung</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">&#127465;&#127466;</span>
+                    <span class="trust-label" data-key="trust-made">Made in Germany</span>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <span class="trust-number">GMP</span>
+                    <span class="trust-label" data-key="trust-cert">Zertifiziert</span>
+                </div>
+            </div>
+        </section>
+
         <section class="intro-about">
             <div class="about-container" id="about">
                 <div class="about-image">
-                    <img src="Photos/DreizGebäde2 2.png" alt="Über uns">
+                    <img src="Photos/DreizGebäude01.png" alt="Über uns">
                 </div>
                 <div class="about-text">
                     <h2 data-key="about-title">Über uns</h2>

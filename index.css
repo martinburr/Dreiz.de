@@ -1,3 +1,20 @@
+/* =====================================================
+   DREIZ COSMETICS — Precision Luxury Design System
+   Palette: #0C0C0C · #F5F0E8 · #C8A96E · #1A1A1A
+   ===================================================== */
+
+:root {
+  --black: #0C0C0C;
+  --ivory: #F5F0E8;
+  --gold: #C8A96E;
+  --gold-light: #E0C88A;
+  --gold-dark: #9A7A42;
+  --white: #FFFFFF;
+  --text: #1A1A1A;
+  --text-muted: #555;
+  --font-serif: 'Cormorant Garamond', serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +38,9 @@ a {
 }
 
 
-/* Global Fonts */
+/* =====================================================
+   GLOBAL FONTS
+   ===================================================== */
 @font-face {
   font-family: zoompronormallight;
   src: url(Fonts/ZoomPro-NormalLight.otf);
@@ -50,20 +69,37 @@ a {
 body {
   font-size: 16px;
   overflow-x: hidden;
-  background-color: white;
+  background-color: var(--white);
+  color: var(--text);
 }
 
 
-/* NAV Section */
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
 header {
   max-width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url(Photos/dreiz_03.jpg);
-  background-position: center 0%;
+  justify-content: center;
+  position: relative;
+  background-image: url(Photos/Hero_Photo01.jpg);
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* Dark cinematic overlay */
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.25) 40%,
+      rgba(0, 0, 0, 0.65) 100%);
+  z-index: 1;
 }
 
 .nav {
@@ -75,20 +111,24 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 64px;
+  height: 72px;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.9);
-  transition: all 0.3s ease;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+  transition: background-color 0.4s ease, border-color 0.4s ease, height 0.3s ease;
+}
+
+.nav.scrolled {
+  height: 64px;
+  background-color: var(--black);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links-wrapper {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-}
-
-.nav-links-wrapper.active {
-  right: 0;
 }
 
 .nav_links {
@@ -98,19 +138,23 @@ header {
 }
 
 .nav_links a {
-  color: white !important;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-family: zoompronormalmedium;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: opacity 0.3s ease;
+  letter-spacing: 3px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav_links a:hover {
-  opacity: 0.7;
+  color: var(--gold);
+  border-bottom-color: var(--gold);
 }
 
+/* Burger */
 .burger-menu {
   display: none;
   flex-direction: column;
@@ -127,10 +171,11 @@ header {
   transition: 0.3s;
 }
 
-.nav.scrolled {
-  height: 65px;
-  background-color: black;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+/* Language switch */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .lang-switch {
@@ -138,102 +183,280 @@ header {
   align-items: center;
   gap: 8px;
   font-family: zoomprocompactregular;
-  font-size: 0.9rem;
-  color: white;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
 }
 
 .lang-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
   padding-bottom: 2px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .lang-link.active {
-  color: white;
-  border-bottom: 2px solid white;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
 }
 
 
-/* Logo */
+/* =====================================================
+   LOGO
+   ===================================================== */
 .logo {
   z-index: 5;
   left: 50%;
-  top: 40%;
+  top: 44%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 1200px;
+  width: 72%;
+  max-width: 1100px;
   position: absolute;
   pointer-events: none;
   filter: brightness(0) invert(1);
-  opacity: 1;
+  opacity: 0.95;
 }
 
 
-/* Products Section */
+/* =====================================================
+   HERO TAGLINE
+   ===================================================== */
+.hero-tagline {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.hero-tagline p {
+  font-family: zoomprocompactregular;
+  font-size: clamp(0.55rem, 1.2vw, 0.75rem);
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero-tagline-line {
+  display: block;
+  width: clamp(30px, 6vw, 80px);
+  height: 1px;
+  background: rgba(200, 169, 110, 0.6);
+}
+
+/* Scroll cue arrow */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  width: 18px;
+  height: 18px;
+  border-right: 1px solid rgba(200, 169, 110, 0.7);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.7);
+  transform: rotate(45deg);
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(8px);
+    opacity: 1;
+  }
+}
+
+
+/* =====================================================
+   PRODUCTS & ABOUT SECTIONS
+   ===================================================== */
 .products-container,
 .about-container {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  margin: 0 5%;
-  grid-gap: 4vw;
+  margin: 0 6%;
+  grid-gap: 5vw;
+}
+
+/* Products section — warm ivory bg */
+.products-container {
+  position: relative;
+}
+
+section:has(.products-container) {
+  background-color: var(--ivory);
+}
+
+.intro-about {
+  background-color: var(--white);
 }
 
 .products-image img,
 .about-image img {
-  max-width: 75%;
+  max-width: 80%;
   height: auto;
   display: block;
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.products-image img:hover,
+.about-image img:hover {
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
 }
 
 .products-text,
 .about-text {
-  padding: 2em 0;
+  padding: 3em 0;
+}
+
+/* Gold accent bar above h2 */
+.products-text h2::before,
+.about-text h2::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 18px;
 }
 
 .products-text h2,
 .about-text h2 {
-  font-size: clamp(2rem, 8vw, 4rem);
-  font-family: zoompronormalregular;
-  margin-bottom: 0.2em;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: 1px;
+  color: var(--black);
+  margin-bottom: 0.15em;
+  line-height: 1.1;
 }
 
 .products-text h3,
 .about-text h3 {
-  font-size: clamp(1rem, 3vw, 1.3rem);
   font-family: zoomprocompactregular;
-  margin-bottom: 1.5em;
-  color: #333;
+  font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+  letter-spacing: 4px;
+  margin-bottom: 2em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
 .products-text p,
 .about-text p {
-  font-size: 1rem;
   font-family: zoomprocompactlight;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.85;
   margin-bottom: 1em;
+  color: var(--text-muted);
 }
 
+/* CTA Download Links */
 .products-text a,
 .about-text a {
-  display: inline-block;
-  color: black;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--black);
   text-decoration: none;
   font-family: zoomprocompactregular;
-  border-bottom: 1px solid black;
-  margin-top: 1.5em;
-  padding-bottom: 5px;
-  transition: all 0.3s ease;
+  font-size: 0.78rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gold);
+  margin-top: 1.8em;
+  margin-right: 2em;
+  padding-bottom: 6px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.products-text a:hover,
+.about-text a:hover {
+  color: var(--gold-dark);
+  border-bottom-color: var(--gold-dark);
 }
 
 
-/* Team Section */
+/* =====================================================
+   TRUST BAR
+   ===================================================== */
+.trust-bar {
+  background-color: var(--black);
+  padding: 4.5rem 6%;
+}
+
+.trust-bar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.trust-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.trust-number {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.trust-label {
+  font-family: zoomprocompactregular;
+  font-size: 0.68rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.5);
+}
+
+.trust-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(200, 169, 110, 0.25);
+  flex-shrink: 0;
+  margin: 0 4%;
+}
+
+
+/* =====================================================
+   TEAM SECTION
+   ===================================================== */
 .about-text {
   order: 1;
 }
@@ -243,191 +466,265 @@ header {
 }
 
 .team-dreiz {
-  background-color: #c5d1dd;
-  padding: 5rem 2rem;
+  background-color: var(--black);
+  padding: 6rem 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
+  position: relative;
+}
+
+/* Subtle gold top border */
+.team-dreiz::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
 }
 
 .team-photo {
   text-align: center;
-  max-width: 300px;
+  max-width: 280px;
 }
 
 .team-id img {
   width: 100%;
-  height: 400px;
+  height: 380px;
   object-fit: cover;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  filter: grayscale(20%);
+  border: 1px solid rgba(200, 169, 110, 0.15);
+  transition: filter 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+}
+
+.team-id img:hover {
+  filter: grayscale(0%);
+  border-color: rgba(200, 169, 110, 0.55);
+  transform: translateY(-4px);
+}
+
+.team-photo h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  color: var(--ivory);
+  margin-bottom: 4px;
+}
+
+.team-photo p {
+  font-family: zoomprocompactregular;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 
-/* Contact Section */
+/* =====================================================
+   CONTACT SECTION
+   ===================================================== */
 .contact-container {
   min-height: 100vh;
-  background-image: url(Photos/Lu1.jpeg);
+  background-image: url(Photos/Contact_Photo01.jpg);
   background-position: center;
   background-size: cover;
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 5%;
 }
 
-.contact-information {
-  /* The "Glass" effect */
-  background: rgba(255, 255, 255, 0.354);
-  backdrop-filter: blur(1.1rem);
-  -webkit-backdrop-filter: blur(10px);
-  /* Definition & Depth */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Dark overlay for contact bg */
+.contact-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
 
-  /* Layout */
-  padding: 3rem;
-  color: rgb(0, 0, 0);
+.contact-information {
+  position: relative;
+  z-index: 2;
+  /* Refined dark glassmorphism */
+  background: rgba(12, 12, 12, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(200, 169, 110, 0.3);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: 3.5rem;
+  color: var(--ivory);
   text-align: center;
-  border-radius: 15px;
+  border-radius: 2px;
   max-width: 500px;
 }
 
+.contact-information h5 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+  color: var(--ivory);
+}
+
+.contact-information h5::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin: 12px auto 0;
+}
+
+.contact-information p {
+  font-family: zoomprocompactlight;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(245, 240, 232, 0.7);
+}
+
 .contact-information p a {
-  color: rgb(0, 0, 0) !important;
+  color: var(--ivory) !important;
   text-decoration: none !important;
-  transition: opacity 0.3s ease;
+  border-bottom: 1px solid rgba(200, 169, 110, 0.4);
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .contact-information p a:hover {
-  opacity: 0.7;
-  text-decoration: underline !important;
+  color: var(--gold) !important;
+  border-bottom-color: var(--gold);
 }
 
-.contact-information h5 {
-  font-family: zoompronormalmedium;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  margin-bottom: 1rem;
-}
-
-/* Container für Formular Felder */
-.input-box-name {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.input-box-email {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+/* Form inputs */
+.input-box-name,
+.input-box-email,
+.input-box-message {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .input-box-message {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
   resize: vertical;
-  /* Verhindert die Größenänderung des Textareas */
   min-height: 80px;
 }
 
 .input-box-message textarea {
   width: 100%;
-  height: 80px;
+  height: 90px;
 }
 
-.contact-input {
+.contact-input,
+.contact-text-area {
   width: 100%;
   font-family: zoomprocompactlight;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  padding: 12px 4px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(200, 169, 110, 0.3);
+  color: var(--ivory);
+  outline: none;
+  transition: border-color 0.3s ease;
+  border-radius: 0;
 }
 
-.contact-text-area {
+.contact-input::placeholder,
+.contact-text-area::placeholder {
+  color: rgba(245, 240, 232, 0.35);
   font-family: zoomprocompactlight;
-  font-size: 1rem;
+  letter-spacing: 1.5px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
 }
 
+.contact-input:focus,
+.contact-text-area:focus {
+  border-bottom-color: var(--gold);
+}
 
-/* Der E-Mail Button in Schwarz/Glas-Optik */
+/* Gold submit button */
+.button {
+  margin-top: 1rem;
+}
+
 .glass-button {
   display: inline-block;
-  padding: 14px 30px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  border-radius: 50px;
-  color: #000000 !important;
-  text-decoration: none;
+  padding: 14px 36px;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  color: var(--black) !important;
   font-family: zoompronormalmedium;
-  font-size: 0.9rem;
-  letter-spacing: 1.5px;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  transition: all 0.4s ease;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-button:hover {
-  background: rgba(0, 0, 0, 1);
-  color: #ffffff !important;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  color: var(--gold) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 169, 110, 0.2);
 }
 
-/* Aktiver Klick-Zustand */
 .glass-button:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
 }
 
-/* Footer Section */
+.contact-link {
+  color: var(--ivory) !important;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 .footer {
-  padding: 2rem;
+  padding: 2rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: var(--black);
   font-family: zoompronormallight;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(200, 169, 110, 0.2);
+}
+
+.footer p,
+.footer span {
+  color: rgba(245, 240, 232, 0.45);
 }
 
 .footer a,
 .impressum p a,
 .credit-link {
-  color: black !important;
+  color: rgba(245, 240, 232, 0.6) !important;
   text-decoration: none !important;
-  font-weight: bold;
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .footer a:hover,
-.agb a:hover,
 .impressum p a:hover {
-  opacity: 0.6;
+  color: var(--gold) !important;
 }
 
-/* Skip link for accessibility */
-.skip-link {
-  position: absolute;
-  left: -999px;
-  top: 10px;
-  background: #000;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  z-index: 2000;
+.credit-link:hover {
+  color: var(--gold) !important;
 }
 
-.skip-link:focus {
-  left: 10px;
-}
 
-/* Focus styles for interactive elements */
-.nav_links a:focus,
-.footer a:focus,
-.impressum p a:focus,
-.lang-link:focus,
-.burger-menu:focus,
-.glass-button:focus,
-.contact-information p a:focus {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
-}
-
-/* Shared legal page styling */
+/* =====================================================
+   LEGAL PAGES
+   ===================================================== */
 .legal-content {
   padding: 100px 10% 80px 10%;
   font-family: zoompronormallight;
@@ -438,10 +735,11 @@ header {
 }
 
 .legal-content h1 {
-  font-family: zoompronormalmedium;
+  font-family: var(--font-serif);
+  font-weight: 300;
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 2rem;
-  color: black;
+  color: var(--black);
 }
 
 .legal-content h2 {
@@ -449,7 +747,7 @@ header {
   font-size: 1.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  color: black;
+  color: var(--black);
   padding-bottom: 0.5rem;
 }
 
@@ -463,33 +761,336 @@ header {
 }
 
 .back-link:hover {
-  color: black;
+  color: var(--gold);
 }
 
 .AGB-Download-link {
   font-family: zoompronormalregular;
   font-size: 1rem;
-  color: black;
+  color: var(--black);
   text-decoration: underline;
 }
 
 
-/* Media Query */
+/* =====================================================
+   KERACIN PRODUCT CAROUSEL
+   ===================================================== */
+.keracin-section {
+  background-color: var(--black);
+  padding: 6rem 0 5rem;
+  overflow: hidden;
+  position: relative;
+}
 
+/* Subtle top border */
+.keracin-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200, 169, 110, 0.4), transparent);
+}
+
+.keracin-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 6%;
+}
+
+.keracin-header h2 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  letter-spacing: 2px;
+  color: var(--ivory);
+  line-height: 1.1;
+  margin-bottom: 0.3em;
+}
+
+/* Gold accent bar above h2 */
+.keracin-header h2::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 18px;
+}
+
+.keracin-header h3 {
+  font-family: zoomprocompactregular;
+  font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* Carousel layout */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  padding: 0 80px;
+}
+
+.carousel-track-outer {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  list-style: none;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  padding: 0 6%;
+}
+
+/* Product card */
+.product-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 6vw;
+}
+
+.product-card__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card__image img {
+  max-width: 85%;
+  max-height: 460px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.6));
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.carousel-slide.is-active .product-card__image img {
+  animation: productReveal 0.6s ease forwards;
+}
+
+@keyframes productReveal {
+  from {
+    transform: translateY(12px);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.product-card__image img:hover {
+  transform: scale(1.03) translateY(-4px);
+  filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.7));
+}
+
+/* Featured (tall bottle) */
+.product-card__image--featured img {
+  max-height: 520px;
+}
+
+/* Text side */
+.product-card__text {
+  padding: 3rem 0;
+}
+
+.product-card__label {
+  font-family: zoomprocompactregular;
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1em;
+}
+
+.product-card__name {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: var(--ivory);
+  line-height: 1.2;
+  margin-bottom: 1.2em;
+  letter-spacing: 1px;
+}
+
+.product-card__desc {
+  font-family: zoomprocompactlight;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(245, 240, 232, 0.55);
+  max-width: 420px;
+}
+
+/* Carousel arrow buttons */
+.carousel-btn {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid rgba(200, 169, 110, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  border-color: var(--gold);
+  background: rgba(200, 169, 110, 0.08);
+}
+
+.carousel-btn span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid rgba(200, 169, 110, 0.8);
+  border-bottom: 1px solid rgba(200, 169, 110, 0.8);
+}
+
+.carousel-btn--prev span {
+  transform: rotate(135deg) translate(-2px, -2px);
+}
+
+.carousel-btn--next span {
+  transform: rotate(-45deg) translate(-2px, -2px);
+}
+
+/* Dot indicators */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 3rem;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(200, 169, 110, 0.2);
+  border: 1px solid rgba(200, 169, 110, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.4);
+}
+
+/* Responsive carousel */
+@media (max-width: 900px) {
+  .carousel-wrapper {
+    padding: 0 48px;
+  }
+
+  .product-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .product-card__image {
+    order: 1;
+  }
+
+  .product-card__text {
+    order: 2;
+    padding: 0 0 2rem;
+  }
+
+  .product-card__desc {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .carousel-wrapper {
+    padding: 0 32px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .product-card__image img {
+    max-height: 300px;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITY
+   ===================================================== */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 10px;
+  background: var(--black);
+  color: var(--ivory);
+  padding: 0.5rem 1rem;
+  z-index: 2000;
+}
+
+.skip-link:focus {
+  left: 10px;
+}
+
+.nav_links a:focus,
+.footer a:focus,
+.impressum p a:focus,
+.lang-link:focus,
+.burger-menu:focus,
+.glass-button:focus,
+.contact-information p a:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   MEDIA QUERIES
+   ===================================================== */
+
+/* iPad portrait / small tablet */
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
   .logo {
-    top: 20% !important;
+    top: 22% !important;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
+    width: 72%;
     max-width: 600px;
   }
 
   header {
     background-position: center 20%;
   }
-}
 
+  .hero-tagline {
+    bottom: 18%;
+  }
+}
 
 @media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: portrait) {
   .logo {
@@ -498,7 +1099,7 @@ header {
   }
 }
 
-
+/* Tablet / stacked layout */
 @media (max-width: 900px) {
 
   .products-container,
@@ -508,6 +1109,11 @@ header {
     padding-top: 100px;
   }
 
+  .products-text h2::before,
+  .about-text h2::before {
+    margin: 0 auto 18px;
+  }
+
   .about-text {
     order: 2;
   }
@@ -515,16 +1121,34 @@ header {
   .about-image {
     order: 1;
   }
+
+  .trust-bar-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .trust-divider {
+    width: 60px;
+    height: 1px;
+    margin: 0;
+  }
+
+  .products-text a,
+  .about-text a {
+    margin-right: 1em;
+  }
 }
 
+/* Mobile nav */
 @media only screen and (max-width: 800px) {
   .nav {
-    height: 42px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
     position: fixed;
+    background-color: rgba(12, 12, 12, 0.9);
   }
 
   .lang-switch {
@@ -532,7 +1156,7 @@ header {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     z-index: 1600;
   }
 
@@ -551,9 +1175,9 @@ header {
     right: -100%;
     width: 100%;
     height: 100vh;
-    background: rgba(15, 15, 15, 0.98);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(12, 12, 12, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -567,11 +1191,27 @@ header {
 
   .nav_links {
     flex-direction: column;
-    gap: 30px;
+    gap: 36px;
+    text-align: center;
   }
 
   .nav_links a {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    letter-spacing: 5px;
+  }
+
+  .hero-tagline p {
+    font-size: 0.5rem;
+    letter-spacing: 3px;
+  }
+
+  .logo {
+    width: 80%;
+    top: 42%;
+  }
+
+  .hero-tagline {
+    bottom: 20%;
   }
 
   .burger-menu.open span:nth-child(1) {
@@ -587,11 +1227,11 @@ header {
   }
 }
 
-
+/* Small mobile */
 @media only screen and (max-width: 600px) {
   .footer {
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     text-align: center;
     padding: 2rem 1rem;
   }
@@ -602,12 +1242,19 @@ header {
     flex-direction: column;
     gap: 10px;
   }
-}
 
+  .contact-information {
+    padding: 2.5rem 1.8rem;
+  }
+}
 
 @media only screen and (max-width: 480px) and (orientation: portrait) {
   .logo {
     top: 20% !important;
-    width: 85%;
+    width: 88%;
+  }
+
+  .hero-tagline {
+    bottom: 16%;
   }
 }

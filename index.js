@@ -54,6 +54,9 @@ window.addEventListener("scroll", function () {
 /* VOLLSTÄNDIGES TRANSLATIONS SYSTEM */
 const translations = {
     'de': {
+        // Hero
+        'hero-tagline': 'MADE IN GERMANY \u00a0·\u00a0 SEIT JAHRZEHNTEN',
+
         // Navigation
         'nav-products': 'Produkte',
         'nav-about': 'Über uns',
@@ -67,6 +70,20 @@ const translations = {
         'prod-p2': 'Unsere Produkte stehen für höchste Qualität „Made in Germany“. Ob exklusive Haarfarben, Pflegeprodukte oder Styling-Serien – wir entwickeln maßgeschneiderte Konzepte, die genau zu Ihrer Marke passen.',
         'prod-link': 'Produktübersicht DE',
         'prod-link2': 'Lohnherstellung DE',
+
+        // Trust Bar
+        'trust-years': 'Jahre Erfahrung',
+        'trust-made': 'Made in Germany',
+        'trust-cert': 'Zertifiziert',
+
+        // KERaCIN carousel labels
+        'prod-k1-label': 'Seit 1979',
+        'prod-k2-label': 'Das Sortiment',
+        'prod-k3-label': 'ArgaOil Linie',
+
+        // Contact form (aliases matching HTML data-keys)
+        'e-mail': 'E-Mail',
+        'nachricht': 'Nachricht',
 
         // About Section
         'about-title': 'Über uns',
@@ -107,11 +124,26 @@ const translations = {
         'foot-imprint-link': 'impressum.html',
         'foot-privacy-link': 'datenschutz.html',
         'foot-agb-link': 'agb.html',
-        'AGB-Download-link': 'AGB_DE'
+        'AGB-Download-link': 'AGB_DE',
+
+        // KERaCIN Carousel
+        'keracin-title': 'System KERaCIN',
+        'keracin-subtitle': 'PROFESSIONAL HAIR & SKIN CARE — GERMANY',
+        'prod-k1': 'Professionelle Haar- & Hautpflege',
+        'prod-k1d': 'Mit echtem Arganöl aus Marokko. Intensive Feuchtigkeit, brillanter Glanz und spürbare Pflege für beanspruchtes Haar.',
+        'prod-k2': 'Die Vollständige Kollektion',
+        'prod-k2d': 'Von Styling bis Pflege — Wet Gel, Haarlack, Glanz Styler, Protein Mousse, Haarspitzen Repair und mehr.',
+        'prod-k3': 'Haarkur · Shampoo · 2-Phasen Kur',
+        'prod-k3d': 'Professionelle ArgaOil Pflegeroutine für glänzendes, geschütztes Haar — starker Halt, langanhaltend und pflegend.',
+        'prod-k4': 'ArgaOil Pflegefluid',
+        'prod-k4d': 'Mit echtem Arganöl aus Marokko. 30 ml Pflegekonzentrat für außergewöhnlichen Glanz und Geschmeidigkeit.',
 
     },
 
     'en': {
+        // Hero
+        'hero-tagline': 'MADE IN GERMANY \u00a0·\u00a0 FOR DECADES',
+
         // Navigation
         'nav-products': 'Products',
         'nav-about': 'About Us',
@@ -125,6 +157,20 @@ const translations = {
         'prod-p2': 'Our products stand for the highest quality "Made in Germany". Whether exclusive hair colors, care products, or styling series – we develop tailor-made concepts that fit your brand perfectly.',
         'prod-link': 'Product Overview DE',
         'prod-link2': 'Contract Manufacturing DE',
+
+        // Trust Bar
+        'trust-years': 'Years of Experience',
+        'trust-made': 'Made in Germany',
+        'trust-cert': 'Certified',
+
+        // KERaCIN carousel labels
+        'prod-k1-label': 'Since 1979',
+        'prod-k2-label': 'The Range',
+        'prod-k3-label': 'ArgaOil Line',
+
+        // Contact form (aliases matching HTML data-keys)
+        'e-mail': 'E-Mail',
+        'nachricht': 'Message',
 
         // About Section
         'about-title': 'About Us',
@@ -153,7 +199,9 @@ const translations = {
         'cont-email': 'E-mail:',
         'name': 'Name',
         'email': 'E-Mail',
+        'e-mail': 'E-Mail',
         'message': 'Message',
+        'nachricht': 'Message',
         'senden': 'Send',
         'cont-hours-title': 'OPENING HOURS',
         'cont-hours-days': 'Mon.-Thu. 8:30 am - 12:00 pm<br>1:00 pm - 4:00 pm<br>Fri. 8:00 am - 12:00 pm',
@@ -167,6 +215,18 @@ const translations = {
         'foot-privacy-link': 'privacy.html',
         'foot-agb-link': 'terms.html',
         'AGB-Download-link': 'AGB_DE',
+
+        // KERaCIN Carousel
+        'keracin-title': 'System KERaCIN',
+        'keracin-subtitle': 'PROFESSIONAL HAIR & SKIN CARE — GERMANY',
+        'prod-k1': 'Professional Hair & Skin Care',
+        'prod-k1d': 'With genuine Argan Oil from Morocco. Intensive moisture, brilliant shine and lasting care for stressed hair.',
+        'prod-k2': 'The Complete Collection',
+        'prod-k2d': 'From styling to care — Wet Gel, Hair Lacquer, Shine Styler, Protein Mousse, Split End Repair and more.',
+        'prod-k3': 'Hair Treatment · Shampoo · 2-Phase Conditioner',
+        'prod-k3d': 'Professional ArgaOil care routine for glossy, protected hair — strong hold, long-lasting and nourishing.',
+        'prod-k4': 'ArgaOil Care Fluid',
+        'prod-k4d': 'With genuine Argan Oil from Morocco. 30 ml care concentrate for exceptional shine and smoothness.',
     }
 };
 
@@ -255,3 +315,87 @@ navLinksItems.forEach(item => {
         burger.setAttribute('aria-expanded', 'false');
     });
 });
+
+
+/* =====================================================
+   KERACIN PRODUCT CAROUSEL
+   ===================================================== */
+(function () {
+    const track = document.getElementById('carouselTrack');
+    const slides = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+    const dots = Array.from(document.querySelectorAll('.carousel-dot'));
+    const btnPrev = document.getElementById('carouselPrev');
+    const btnNext = document.getElementById('carouselNext');
+
+    if (!track || slides.length === 0) return;
+
+    let current = 0;
+    let autoTimer;
+    const DELAY = 5000;
+
+    function goTo(index) {
+        // Wrap around
+        index = (index + slides.length) % slides.length;
+
+        // Remove active from previous
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+
+        current = index;
+
+        // Move track
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        // Activate new slide + dot
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+    }
+
+    function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), DELAY);
+    }
+
+    function resetAuto() {
+        startAuto();
+    }
+
+    // Initialise first slide
+    slides[0].classList.add('is-active');
+
+    // Arrow buttons
+    btnPrev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    btnNext.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    // Dot buttons
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+    });
+
+    // Keyboard support (when section is focused)
+    document.addEventListener('keydown', (e) => {
+        const section = document.getElementById('keracin');
+        if (!section || !section.matches(':hover')) return;
+        if (e.key === 'ArrowLeft') { goTo(current - 1); resetAuto(); }
+        if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); resetAuto(); }
+    });
+
+    // Pause on hover
+    const wrapper = document.querySelector('.keracin-section');
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        wrapper.addEventListener('mouseleave', startAuto);
+    }
+
+    startAuto();
+})();
